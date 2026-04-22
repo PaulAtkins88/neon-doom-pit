@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Doom Pit</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+      <div id="hud" class="hud">
+        <div class="hud-top">
+          <div class="brand">NEON DOOM PIT</div>
+          <div class="status-row">
+            <div class="status-card"><span>HP</span><strong id="health">100</strong></div>
+            <div class="status-card"><span>AMMO</span><strong id="ammo">24</strong></div>
+            <div class="status-card"><span>KILLS</span><strong id="kills">0</strong></div>
+          </div>
+        </div>
+        <div class="hud-bottom">
+          <div class="tip" id="tip">Click to enter the arena</div>
+        </div>
+        <div class="crosshair" aria-hidden="true"></div>
+        <div class="damage-flash" id="damageFlash" aria-hidden="true"></div>
+        <div class="muzzle-flash" id="muzzleFlash" aria-hidden="true"></div>
+      </div>
+      <div id="overlay" class="overlay">
+        <div class="panel">
+          <p class="eyebrow">Browser FPS Prototype</p>
+          <h1>Neon Doom Pit</h1>
+          <p>Survive the arena, blast the drones, and keep moving.</p>
+          <ul>
+            <li>WASD to move</li>
+            <li>Mouse to look</li>
+            <li>Click to fire</li>
+            <li>Shift to sprint</li>
+          </ul>
+          <button id="startButton" type="button">Enter Arena</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
