@@ -1,5 +1,7 @@
 # Neon Doom Pit
 
+![Neon Doom Pit title screen](public/neon-doom-pit-title.png)
+
 Neon Doom Pit is a small browser FPS prototype built with Vite, TypeScript, and three.js. The game keeps a deliberately compact scope: one arena, short wave-based combat, pointer-lock controls, hitscan shooting, simple enemy AI, and a HUD/overlay flow that fits fast iteration.
 
 It started as a quick experiment in what a simple prompt to a coding agent could produce, then turned into a small game worth polishing and sharing.
