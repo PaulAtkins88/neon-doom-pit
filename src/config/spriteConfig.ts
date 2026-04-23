@@ -20,14 +20,14 @@ interface MonsterSpriteConfig extends BillboardSpriteConfig {
 
 export const PICKUP_SPRITES: Record<PickupType, BillboardSpriteConfig> = {
   health: {
-    path: '/sprites/pickups/health.png',
+    path: 'sprites/pickups/health.png',
     width: 1.0,
     height: 1.0,
     alphaTest: 0.4,
     depthWrite: false,
   },
   shotgun: {
-    path: '/sprites/pickups/shotgun.png',
+    path: 'sprites/pickups/shotgun.png',
     width: 1.0,
     height: 1.0,
     alphaTest: 0.4,
@@ -37,7 +37,7 @@ export const PICKUP_SPRITES: Record<PickupType, BillboardSpriteConfig> = {
 
 export const MONSTER_SPRITES: Record<MonsterKind, MonsterSpriteConfig> = {
   grunt: {
-    path: '/sprites/monsters/grunt.png',
+    path: 'sprites/monsters/grunt.png',
     width: 1.55,
     height: 1.8,
     alphaTest: 0.32,
@@ -45,7 +45,7 @@ export const MONSTER_SPRITES: Record<MonsterKind, MonsterSpriteConfig> = {
     eyeOffset: [0, 1.05, 0.06],
   },
   spitter: {
-    path: '/sprites/monsters/spitter.png',
+    path: 'sprites/monsters/spitter.png',
     width: 1.65,
     height: 1.85,
     alphaTest: 0.32,
@@ -53,7 +53,7 @@ export const MONSTER_SPRITES: Record<MonsterKind, MonsterSpriteConfig> = {
     eyeOffset: [0, 1.08, 0.06],
   },
   charger: {
-    path: '/sprites/monsters/charger.png',
+    path: 'sprites/monsters/charger.png',
     width: 1.8,
     height: 2.05,
     alphaTest: 0.32,
@@ -61,7 +61,7 @@ export const MONSTER_SPRITES: Record<MonsterKind, MonsterSpriteConfig> = {
     eyeOffset: [0, 1.14, 0.06],
   },
   imp: {
-    path: '/sprites/monsters/imp.png',
+    path: 'sprites/monsters/imp.png',
     width: 1.45,
     height: 1.7,
     alphaTest: 0.32,
@@ -72,14 +72,14 @@ export const MONSTER_SPRITES: Record<MonsterKind, MonsterSpriteConfig> = {
 
 export const PROP_SPRITES = {
   debrisBrown: {
-    path: '/sprites/props/debris-brown.png',
+    path: 'sprites/props/debris-brown.png',
     width: 1.7,
     height: 1.35,
     alphaTest: 0.28,
     depthWrite: false,
   },
   debrisGrey: {
-    path: '/sprites/props/debris-grey.png',
+    path: 'sprites/props/debris-grey.png',
     width: 1.55,
     height: 1.25,
     alphaTest: 0.28,
@@ -89,7 +89,7 @@ export const PROP_SPRITES = {
 
 export const PROJECTILE_SPRITES: Record<ProjectileOwner, BillboardSpriteConfig> = {
   player: {
-    path: '/sprites/projectiles/bolt.png',
+    path: 'sprites/projectiles/bolt.png',
     width: 0.55,
     height: 0.55,
     additive: true,
@@ -100,7 +100,7 @@ export const PROJECTILE_SPRITES: Record<ProjectileOwner, BillboardSpriteConfig> 
     emissiveIntensity: 0.7,
   },
   enemy: {
-    path: '/sprites/projectiles/bolt.png',
+    path: 'sprites/projectiles/bolt.png',
     width: 0.58,
     height: 0.58,
     additive: true,

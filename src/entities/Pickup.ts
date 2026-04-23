@@ -25,7 +25,7 @@ export class Pickup extends GameObject {
     const sprite = PICKUP_SPRITES[config.type];
     const root = new THREE.Group();
     const glow = createBillboard({
-      path: '/sprites/projectiles/bolt.png',
+      path: 'sprites/projectiles/bolt.png',
       size: { width: 1.25, height: 1.25 },
       color: config.color,
       alphaTest: 0.08,
