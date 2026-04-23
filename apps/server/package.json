@@ -1,0 +1,19 @@
+{
+  "name": "@neon/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@neon/shared": "workspace:*",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.9.3"
+  }
+}

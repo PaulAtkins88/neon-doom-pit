@@ -42,20 +42,20 @@ When implementing a task:
 
 Use these defaults when adding code.
 
-- New arena geometry or lighting: `src/world/ArenaFactory.ts` or `src/world/GameWorld.ts`
-- New player behavior: `src/entities/Player.ts`
-- New monster type: `src/entities/monsters/`
-- New shared monster logic: `src/entities/monsters/behaviors.ts`
-- New wave rules: `src/systems/WaveSystem.ts`
-- New HUD/overlay logic: `src/systems/HudSystem.ts`
-- New shooting or damage resolution: `src/systems/CombatSystem.ts`
-- New constants/tuning: `src/config/gameConfig.ts` or `src/config/monsterConfigs.ts`
-- New shared pure helpers: `src/utils/`
+- New arena geometry or lighting: `apps/web/src/world/ArenaFactory.ts` or `apps/web/src/world/GameWorld.ts`
+- New player behavior: `apps/web/src/entities/Player.ts`
+- New monster type: `apps/web/src/entities/monsters/`
+- New shared monster logic: `apps/web/src/entities/monsters/behaviors.ts`
+- New wave rules: `apps/web/src/systems/WaveSystem.ts`
+- New HUD/overlay logic: `apps/web/src/systems/HudSystem.ts`
+- New shooting or damage resolution: `apps/web/src/systems/CombatSystem.ts`
+- New constants/tuning: `apps/web/src/config/gameConfig.ts` or `apps/web/src/config/monsterConfigs.ts`
+- New shared pure helpers: `apps/web/src/utils/`
 
 ## How To Add A Monster
 
-1. Add a typed config entry in `src/config/monsterConfigs.ts`
-2. Create a subclass in `src/entities/monsters/`
+1. Add a typed config entry in `apps/web/src/config/monsterConfigs.ts`
+2. Create a subclass in `apps/web/src/entities/monsters/`
 3. Override only the methods that actually differ:
    - `resolveMovementDirection`
    - `resolveMovementSpeed`
@@ -123,6 +123,16 @@ For gameplay changes, also confirm by review or manual run:
 - shooting and reload still work
 - enemies spawn and attack correctly
 - wave clear and restart flows still work
+
+For multiplayer changes, also confirm manually:
+
+- `pnpm dev:server` and `pnpm dev` both boot successfully
+- host can create a room and a second client can join it
+- both clients see remote player movement, shooting, pickups, monster deaths, and wave transitions
+- reconnect inside the grace window restores the same player slot
+- expired reconnects and expired rooms show the expected failure messaging
+- reconnecting from a second tab closes the old socket cleanly without ghost state
+- replicated remote players, monsters, pickups, and projectiles clear on disconnect or room change
 
 ## Anti-Patterns
 

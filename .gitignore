@@ -4,3 +4,5 @@ dist/
 .opencode/node_modules/
 .opencode/package-lock.json
 .opencode/package.json
+apps/*/dist/
+apps/*/node_modules/

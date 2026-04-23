@@ -5,10 +5,10 @@ agent: build
 Add a new pickup or interactive object to Neon Doom Pit.
 
 First inspect:
-- `src/entities/GameObject.ts`
-- `src/world/GameWorld.ts`
-- `src/core/Game.ts`
-- `src/systems/HudSystem.ts`
+- `apps/web/src/entities/GameObject.ts`
+- `apps/web/src/world/GameWorld.ts`
+- `apps/web/src/core/Game.ts`
+- `apps/web/src/systems/HudSystem.ts`
 
 Requirements:
 - If it has runtime behavior, model it as a `GameObject`-style entity

@@ -5,9 +5,9 @@ agent: build
 Add a monster modifier or status effect to Neon Doom Pit.
 
 First inspect:
-- `src/entities/monsters/Monster.ts`
-- `src/entities/monsters/behaviors.ts`
-- `src/config/monsterConfigs.ts`
+- `apps/web/src/entities/monsters/Monster.ts`
+- `apps/web/src/entities/monsters/behaviors.ts`
+- `apps/web/src/config/monsterConfigs.ts`
 
 Requirements:
 - Prefer the existing `MonsterEffectHook` seam first

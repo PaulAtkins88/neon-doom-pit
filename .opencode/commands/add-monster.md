@@ -5,15 +5,15 @@ agent: build
 Add a new monster to Neon Doom Pit.
 
 First inspect:
-- `src/entities/monsters/Monster.ts`
-- `src/entities/monsters/MonsterFactory.ts`
-- `src/entities/monsters/behaviors.ts`
-- `src/config/monsterConfigs.ts`
-- `src/systems/WaveSystem.ts`
+- `apps/web/src/entities/monsters/Monster.ts`
+- `apps/web/src/entities/monsters/MonsterFactory.ts`
+- `apps/web/src/entities/monsters/behaviors.ts`
+- `apps/web/src/config/monsterConfigs.ts`
+- `apps/web/src/systems/WaveSystem.ts`
 
 Requirements:
-- Implement the monster as a `Monster` subclass under `src/entities/monsters/`
-- Add a typed config entry in `src/config/monsterConfigs.ts`
+- Implement the monster as a `Monster` subclass under `apps/web/src/entities/monsters/`
+- Add a typed config entry in `apps/web/src/config/monsterConfigs.ts`
 - Reuse shared helpers where appropriate
 - Register the monster in `MonsterFactory.ts`
 - Add it to wave spawning only if the request calls for it
