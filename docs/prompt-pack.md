@@ -18,11 +18,11 @@ Important repo constraints:
 - Keep the architecture pragmatic; do not build a large engine
 - Meaningful runtime entities are Player, Monster, and Projectile
 - Static arena geometry usually stays in the world layer
-- Core orchestration lives in src/core/Game.ts
-- Static world construction lives in src/world/*
-- Runtime entities live in src/entities/*
-- Cross-cutting gameplay systems live in src/systems/*
-- Gameplay tuning belongs in src/config/*
+- Core browser orchestration lives in apps/web/src/core/Game.ts
+- Static world construction lives in apps/web/src/world/*
+- Runtime entities live in apps/web/src/entities/*
+- Cross-cutting gameplay systems live in apps/web/src/systems/*
+- Gameplay tuning belongs in apps/web/src/config/*
 
 Implementation expectations:
 - Read the relevant files first
@@ -36,17 +36,17 @@ Implementation expectations:
 
 ```text
 Read the current monster architecture first, especially:
-- src/entities/monsters/Monster.ts
-- src/entities/monsters/MonsterFactory.ts
-- src/entities/monsters/behaviors.ts
-- src/config/monsterConfigs.ts
-- src/systems/WaveSystem.ts
+- apps/web/src/entities/monsters/Monster.ts
+- apps/web/src/entities/monsters/MonsterFactory.ts
+- apps/web/src/entities/monsters/behaviors.ts
+- apps/web/src/config/monsterConfigs.ts
+- apps/web/src/systems/WaveSystem.ts
 
 Add a new monster type called <MONSTER_NAME>.
 
 Requirements:
 - Implement it as a Monster subclass
-- Add a typed config entry in src/config/monsterConfigs.ts
+- Add a typed config entry in apps/web/src/config/monsterConfigs.ts
 - Reuse shared movement/attack helpers where appropriate
 - Register it in MonsterFactory.ts
 - Add it to WaveSystem only if the design calls for natural spawning
@@ -69,10 +69,10 @@ Suggested slash alias:
 
 ```text
 Read the current player and combat flow first, especially:
-- src/entities/Player.ts
-- src/systems/CombatSystem.ts
-- src/systems/HudSystem.ts
-- src/core/Game.ts
+- apps/web/src/entities/Player.ts
+- apps/web/src/systems/CombatSystem.ts
+- apps/web/src/systems/HudSystem.ts
+- apps/web/src/core/Game.ts
 
 Add a new weapon called <WEAPON_NAME>.
 
@@ -98,9 +98,9 @@ Suggested slash alias:
 
 ```text
 Read the current balance and progression first, especially:
-- src/config/monsterConfigs.ts
-- src/config/gameConfig.ts
-- src/systems/WaveSystem.ts
+- apps/web/src/config/monsterConfigs.ts
+- apps/web/src/config/gameConfig.ts
+- apps/web/src/systems/WaveSystem.ts
 
 Rebalance the game according to this goal:
 <BALANCE_GOAL>

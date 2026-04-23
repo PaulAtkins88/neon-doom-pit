@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Doom Pit</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+      <div id="hud" class="hud">
+        <div class="hud-top">
+          <div class="brand">NEON DOOM PIT</div>
+          <div class="status-row">
+            <div class="status-card"><span>HP</span><strong id="health">100</strong></div>
+            <div class="status-card"><span>AMMO</span><strong id="ammo">24</strong></div>
+            <div class="status-card"><span>KILLS</span><strong id="kills">0</strong></div>
+          </div>
+        </div>
+        <div class="hud-bottom">
+          <div class="tip" id="tip">Click to enter the arena</div>
+        </div>
+        <div class="crosshair" aria-hidden="true"></div>
+        <div class="damage-flash" id="damageFlash" aria-hidden="true"></div>
+        <div class="muzzle-flash" id="muzzleFlash" aria-hidden="true"></div>
+      </div>
+      <div id="overlay" class="overlay">
+        <div class="panel">
+          <p class="eyebrow">2-Player Co-op Room</p>
+          <h1>Neon Doom Pit</h1>
+          <p>Link up with another runner, then drop into the arena together.</p>
+          <div class="room-form">
+            <label class="field">
+              <span>Callsign</span>
+              <input id="playerNameInput" type="text" maxlength="24" placeholder="Player" />
+            </label>
+            <label class="field">
+              <span>Room Code</span>
+              <input id="roomCodeInput" type="text" inputmode="text" maxlength="6" placeholder="AB12CD" />
+            </label>
+          </div>
+          <div class="room-actions">
+            <button id="createRoomButton" type="button">Create Room</button>
+            <button id="joinRoomButton" type="button" class="secondary">Join Room</button>
+            <button id="reconnectButton" type="button" class="secondary hidden">Reconnect</button>
+          </div>
+          <p id="sessionStatus" class="session-status">Create a room or join with a 6-character code.</p>
+          <p id="roomMeta" class="room-meta">Server target: ws://localhost:2567</p>
+          <ul>
+            <li>WASD to move</li>
+            <li>Mouse to look</li>
+            <li>Click to fire</li>
+            <li>Shift to sprint</li>
+          </ul>
+          <button id="startButton" type="button" disabled>Enter Arena</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

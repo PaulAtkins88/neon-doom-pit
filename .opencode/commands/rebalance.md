@@ -5,9 +5,9 @@ agent: build
 Rebalance Neon Doom Pit according to the requested goal.
 
 First inspect:
-- `src/config/monsterConfigs.ts`
-- `src/config/gameConfig.ts`
-- `src/systems/WaveSystem.ts`
+- `apps/web/src/config/monsterConfigs.ts`
+- `apps/web/src/config/gameConfig.ts`
+- `apps/web/src/systems/WaveSystem.ts`
 
 Requirements:
 - Prefer config tuning before architectural changes

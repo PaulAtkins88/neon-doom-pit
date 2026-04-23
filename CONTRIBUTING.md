@@ -7,7 +7,7 @@ This repository is intentionally small and opinionated. Contributions are welcom
 ## Before You Open a PR
 
 - Read `README.md` first
-- Check the current architecture in `src/core`, `src/world`, `src/entities`, and `src/systems`
+- Check the current browser architecture in `apps/web/src/core`, `apps/web/src/world`, `apps/web/src/entities`, and `apps/web/src/systems`
 - Keep the change small and localized
 - Run `pnpm build`
 

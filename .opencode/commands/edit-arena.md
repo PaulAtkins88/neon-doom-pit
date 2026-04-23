@@ -5,9 +5,9 @@ agent: build
 Modify the arena layout or visuals in Neon Doom Pit.
 
 First inspect:
-- `src/world/ArenaFactory.ts`
-- `src/world/GameWorld.ts`
-- `src/config/gameConfig.ts`
+- `apps/web/src/world/ArenaFactory.ts`
+- `apps/web/src/world/GameWorld.ts`
+- `apps/web/src/config/gameConfig.ts`
 
 Requirements:
 - Preserve pointer-lock FPS readability and movement flow

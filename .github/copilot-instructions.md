@@ -4,12 +4,13 @@ This repository is a small TypeScript three.js FPS prototype. Optimize for maint
 
 ## Project Shape
 
-- Entry point: `src/main.ts`
-- Main coordinator: `src/core/Game.ts`
-- Static world construction: `src/world/*`
-- Runtime entities: `src/entities/*`
-- Gameplay orchestration systems: `src/systems/*`
-- Shared constants: `src/config/*`
+- Browser entry point: `apps/web/src/main.ts`
+- Main coordinator: `apps/web/src/core/Game.ts`
+- Static world construction: `apps/web/src/world/*`
+- Runtime entities: `apps/web/src/entities/*`
+- Gameplay orchestration systems: `apps/web/src/systems/*`
+- Shared constants: `apps/web/src/config/*`
+- Multiplayer contracts: `packages/shared/src/*`
 
 ## Rules
 
@@ -27,7 +28,7 @@ This repository is a small TypeScript three.js FPS prototype. Optimize for maint
 - New player-facing HUD interactions should go through `HudSystem`
 - New wave/progression rules should usually live in `WaveSystem`
 - New scene geometry should usually be added in `ArenaFactory` or `GameWorld`
-- New collision rules should reuse `Collider` and helpers in `src/utils/math.ts`
+- New collision rules should reuse `Collider` and helpers in `apps/web/src/utils/math.ts`
 
 ## Verification
 

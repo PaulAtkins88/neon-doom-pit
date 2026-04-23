@@ -5,10 +5,10 @@ agent: build
 Add a new weapon to Neon Doom Pit.
 
 First inspect:
-- `src/entities/Player.ts`
-- `src/systems/CombatSystem.ts`
-- `src/systems/HudSystem.ts`
-- `src/core/Game.ts`
+- `apps/web/src/entities/Player.ts`
+- `apps/web/src/systems/CombatSystem.ts`
+- `apps/web/src/systems/HudSystem.ts`
+- `apps/web/src/core/Game.ts`
 
 Requirements:
 - Preserve the existing weapon flow unless the request explicitly broadens it
