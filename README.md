@@ -20,6 +20,12 @@ It started as a quick experiment in what a simple prompt to a coding agent could
 - Included sprite assets: derived from Kenney packs and kept in `public/sprites/`
 - Kenney asset license: CC0 / public domain
 
+## Play Online
+
+- GitHub Pages: `https://paulatkins88.github.io/neon-doom-pit/`
+
+The Pages build deploys automatically from `main` via GitHub Actions.
+
 ## Scripts
 
 - `pnpm dev`: run the local development server
