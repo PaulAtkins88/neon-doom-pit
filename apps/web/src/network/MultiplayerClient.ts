@@ -47,6 +47,7 @@ export class MultiplayerClient {
 
   private socket: WebSocket | null = null;
   private connectPromise: Promise<void> | null = null;
+  private rejectConnectPromise: ((reason?: unknown) => void) | null = null;
   private pendingJoinRequest: PendingJoinRequest | null = null;
   private connectionState: ConnectionState;
   private latestSnapshot: MatchSnapshot | null = null;
@@ -169,8 +170,10 @@ export class MultiplayerClient {
 
     this.connectPromise = new Promise<void>((resolve, reject) => {
       const socket = this.socket;
+      this.rejectConnectPromise = reject;
 
       if (!socket) {
+        this.rejectConnectPromise = null;
         reject(new Error('WebSocket connection was not created.'));
         return;
       }
@@ -181,6 +184,7 @@ export class MultiplayerClient {
         }
 
         this.connectPromise = null;
+        this.rejectConnectPromise = null;
         this.updateConnectionState('connected');
         resolve();
       }, { once: true });
@@ -191,6 +195,7 @@ export class MultiplayerClient {
         }
 
         this.connectPromise = null;
+        this.rejectConnectPromise = null;
         this.updateConnectionState('error');
         reject(new Error(`Unable to connect to multiplayer server at ${this.url}.`));
       }, { once: true });
@@ -200,6 +205,8 @@ export class MultiplayerClient {
           return;
         }
 
+        this.rejectConnectPromise?.(new Error('Disconnected from multiplayer server.'));
+        this.rejectConnectPromise = null;
         this.socket = null;
         this.connectPromise = null;
         this.clearRoomState();

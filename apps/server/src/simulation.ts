@@ -235,7 +235,7 @@ function simulateMonsters(room: RoomRecord, deltaSeconds: number): void {
 
     if (distance < monster.attackRange) {
       targetPlayer.simulation.health = Math.max(0, targetPlayer.simulation.health - monster.meleeDamage);
-      monster.attackCooldown = MONSTER_MELEE_COOLDOWN_OVERRIDES[monster.type] ?? monster.attackRange;
+      monster.attackCooldown = MONSTER_MELEE_COOLDOWN_OVERRIDES[monster.type] ?? monster.attackCooldown;
     }
   }
 }

@@ -67,18 +67,16 @@ export class ReplicatedProjectileView {
 function disposeProjectile(object: THREE.Object3D): void {
   object.removeFromParent();
 
+  for (const child of object.children) {
+    child.removeFromParent();
+  }
+
   if (!(object instanceof THREE.Mesh)) {
     return;
   }
 
   object.geometry.dispose();
   disposeMaterial(object.material);
-
-  for (const child of object.children) {
-    if (child instanceof THREE.PointLight) {
-      child.dispose();
-    }
-  }
 }
 
 function disposeMaterial(material: THREE.Material | THREE.Material[]): void {

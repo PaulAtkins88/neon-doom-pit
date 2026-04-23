@@ -8,11 +8,12 @@ export type MatchId = Brand<string, 'MatchId'>;
 export type RoomCode = Brand<string, 'RoomCode'>;
 export type SessionToken = Brand<string, 'SessionToken'>;
 
+const cryptoApi = globalThis.crypto;
 const ROOM_CODE_PATTERN = /^[A-HJ-NP-Z2-9]{6}$/;
 const ROOM_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
 function createId<TId extends EntityId | PlayerId | MatchId | SessionToken>(prefix: string): TId {
-  return `${prefix}_${Math.random().toString(36).slice(2, 10)}` as TId;
+  return `${prefix}_${createSecureToken(8)}` as TId;
 }
 
 export function createEntityId(): EntityId {
@@ -32,14 +33,7 @@ export function createSessionToken(): SessionToken {
 }
 
 export function createRoomCode(): RoomCode {
-  let value = '';
-
-  for (let index = 0; index < 6; index += 1) {
-    const characterIndex = Math.floor(Math.random() * ROOM_CODE_ALPHABET.length);
-    value += ROOM_CODE_ALPHABET[characterIndex];
-  }
-
-  return value as RoomCode;
+  return createSecureCode(6) as RoomCode;
 }
 
 export function normalizeRoomCode(value: string): RoomCode {
@@ -48,4 +42,39 @@ export function normalizeRoomCode(value: string): RoomCode {
 
 export function isRoomCode(value: string): value is RoomCode {
   return ROOM_CODE_PATTERN.test(normalizeRoomCode(value));
+}
+
+function createSecureToken(length: number): string {
+  if (!cryptoApi) {
+    throw new Error('Secure random generator is unavailable in this runtime.');
+  }
+
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const bytes = new Uint8Array(length);
+  cryptoApi.getRandomValues(bytes);
+
+  let token = '';
+
+  for (const byte of bytes) {
+    token += alphabet[byte % alphabet.length];
+  }
+
+  return token;
+}
+
+function createSecureCode(length: number): string {
+  if (!cryptoApi) {
+    throw new Error('Secure random generator is unavailable in this runtime.');
+  }
+
+  const bytes = new Uint8Array(length);
+  cryptoApi.getRandomValues(bytes);
+
+  let value = '';
+
+  for (const byte of bytes) {
+    value += ROOM_CODE_ALPHABET[byte % ROOM_CODE_ALPHABET.length];
+  }
+
+  return value;
 }
