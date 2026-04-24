@@ -6,12 +6,12 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @neon/web dev",
-    "build": "pnpm --filter @neon/web build",
+    "build": "pnpm --filter @neon/web build && pnpm --filter @neon/server build",
     "preview": "pnpm --filter @neon/web preview",
-    "dev:server": "pnpm --filter @neon/server dev"
+    "dev:server": "pnpm --filter @neon/server dev",
+    "start": "pnpm --filter @neon/server start"
   },
   "devDependencies": {
-    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }

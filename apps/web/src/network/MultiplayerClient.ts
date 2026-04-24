@@ -33,9 +33,21 @@ interface PendingJoinRequest {
 }
 
 function getDefaultServerUrl(): string {
+  const explicitUrl = import.meta.env.VITE_MULTIPLAYER_SERVER_URL;
+
+  if (typeof explicitUrl === 'string' && explicitUrl.length > 0) {
+    return explicitUrl;
+  }
+
   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
   const host = window.location.hostname || 'localhost';
   const port = import.meta.env.VITE_MULTIPLAYER_SERVER_PORT ?? '2567';
+  const isDefaultPort = window.location.port.length === 0;
+  const shouldReuseOriginPort = isDefaultPort || window.location.port === port;
+
+  if (shouldReuseOriginPort) {
+    return `${protocol}://${window.location.host}`;
+  }
 
   return `${protocol}://${host}:${port}`;
 }
