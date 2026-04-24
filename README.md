@@ -24,18 +24,17 @@ It started as a quick experiment in what a simple prompt to a coding agent could
 
 - GitHub Pages: `https://paulatkins88.github.io/neon-doom-pit/`
 
-The Pages build deploys automatically from `main` via GitHub Actions.
+GitHub Pages remains a static-only client host. The multiplayer build now targets a full-stack host so the authoritative room server can run alongside the browser app.
 
 ## Scripts
 
 - `pnpm dev`: run the local development server
 - `pnpm dev:server`: run the authoritative multiplayer room server
-- `pnpm build`: production build and main verification command
+- `pnpm build`: build the web client and verify the server production compile
 - `pnpm preview`: preview the production build locally
+- `pnpm start`: start the app server that serves the built web client and WebSocket endpoint on one port
 
-For multiplayer backend changes, also run:
-
-- `pnpm --filter @neon/server build`
+For multiplayer backend changes, `pnpm build` now also verifies the server bundle.
 
 ## Gameplay Summary
 
@@ -177,6 +176,57 @@ To exercise the co-op flow locally:
 5. Use reconnect after closing one tab to verify the grace-window flow
 
 The browser client targets `ws://localhost:2567` by default. Override the port with `VITE_MULTIPLAYER_SERVER_PORT` if needed.
+
+For production, prefer `VITE_MULTIPLAYER_SERVER_URL` when the socket server lives on a different origin. If the browser app and multiplayer server share the same host and port, the client reuses `window.location.host` automatically.
+
+## Railway Deployment
+
+Issue `#21` is addressed with a single-service deployment shape that fits Railway cleanly.
+
+### Recommended Topology
+
+- one Railway web service
+- `apps/server` runs as the Node process
+- the server serves the built `apps/web/dist` files over HTTP
+- the same public Railway domain handles both browser requests and WebSocket upgrades
+
+This avoids cross-origin WebSocket config, keeps only one public URL, and matches Railway's single exposed `PORT` model.
+
+### Railway Settings
+
+- Root directory: repository root
+- Build command: `pnpm install --frozen-lockfile && pnpm build`
+- Start command: `pnpm start`
+
+Railway provides `PORT` automatically. No custom port env var is required for the default single-service setup.
+
+### Optional Environment Variables
+
+- `VITE_MULTIPLAYER_SERVER_URL`
+  - only set this if the browser client should connect to a different WebSocket origin
+- `VITE_MULTIPLAYER_SERVER_PORT`
+  - local/dev override when the server is not on the browser origin
+
+### Health Check
+
+- path: `/health`
+- expected response: `200` with `{"ok":true}`
+
+### Smoke Checklist
+
+After the first Railway deploy, verify:
+
+1. The homepage loads from the Railway domain.
+2. Pointer lock still works after entering the game.
+3. Create room succeeds.
+4. Join room succeeds from a second browser/tab.
+5. Start run succeeds and both players receive live updates.
+6. Reconnect works within the grace window after closing a tab.
+7. Expired reconnect/session flows show the expected failure UI.
+
+### GitHub Pages Status
+
+GitHub Pages should be treated as static-only. It is no longer the authoritative multiplayer deployment target.
 
 ## Multiplayer QA Matrix
 
