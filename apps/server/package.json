@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@neon/shared": "workspace:*",
+    "tsx": "^4.20.6",
     "ws": "^8.18.3"
   },
   "devDependencies": {

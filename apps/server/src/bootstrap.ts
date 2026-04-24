@@ -1,6 +1,6 @@
 import { createReadStream, existsSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
-import { dirname, extname, join, normalize } from 'node:path';
+import { dirname, extname, isAbsolute, join, normalize, relative, resolve } from 'node:path';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { WebSocketServer } from 'ws';
@@ -116,11 +116,15 @@ async function resolveStaticFilePath(requestPath: string): Promise<string | null
   }
 
   const normalizedPath = normalize(requestPath).replace(/^\/(\.\.(\/|\\|$))+/, '/');
-  const candidatePath = normalizedPath === '/' ? '/index.html' : normalizedPath;
-  const absolutePath = join(WEB_DIST_DIR, candidatePath);
+  const candidatePath = normalizedPath === '/' ? 'index.html' : normalizedPath.replace(/^\/+/, '');
+  const absolutePath = resolve(WEB_DIST_DIR, candidatePath);
 
   if (isPathInsideRoot(absolutePath) && await isFile(absolutePath)) {
     return absolutePath;
+  }
+
+  if (looksLikeStaticAsset(normalizedPath)) {
+    return null;
   }
 
   const indexPath = join(WEB_DIST_DIR, 'index.html');
@@ -128,7 +132,12 @@ async function resolveStaticFilePath(requestPath: string): Promise<string | null
 }
 
 function isPathInsideRoot(filePath: string): boolean {
-  return filePath.startsWith(WEB_DIST_DIR);
+  const relativePath = relative(WEB_DIST_DIR, filePath);
+  return relativePath !== '' && !relativePath.startsWith('..') && !isAbsolute(relativePath);
+}
+
+function looksLikeStaticAsset(requestPath: string): boolean {
+  return extname(requestPath) !== '';
 }
 
 async function isFile(filePath: string): Promise<boolean> {
