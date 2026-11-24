@@ -310,3 +310,7 @@ Those Kenney packs are distributed under CC0, which makes them a good fit for a 
 - pickups and power-ups as additional `GameObject` types
 - richer monster effects using `MonsterEffectHook`
 - multiple arenas or encounter layouts via additional world builders
+
+---
+
+More of my work: [paulatkins.com.au](https://www.paulatkins.com.au/)
